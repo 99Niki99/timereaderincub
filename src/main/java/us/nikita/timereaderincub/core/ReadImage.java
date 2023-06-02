@@ -14,7 +14,7 @@ public class ReadImage {
 
             tesseract.setDatapath("D:\\Tess4J\\tessdata");
 
-                text = tesseract.doOCR(new File("D:\\PhotoForTest\\text.png"));
+                text = tesseract.doOCR(new File("D:\\PhotoForTest\\timer3.jpg"));
 
             return text;
 
