@@ -21,15 +21,13 @@ public class TextDivision {
         for (String s : splitText) {
             String line = s.trim();
             String[] words = line.split("\\s+");
-
-
             if (hasEmployee(line)) {
                 teamWorkers.add(line);
             } else
-                if (words[1].equals("Start")) {
+                if (cableName(line)) {
                 cable.add(words[1]);
             } else
-                if (words[words.length - 1].equals("ft")) {
+                if (cableLength(line)) {
                 try {
                     cableLength.add(Integer.valueOf(words[1]));
                 } catch (Exception e) {
@@ -43,5 +41,11 @@ public class TextDivision {
     private static boolean hasEmployee(String line){
 
        return line.startsWith("Operator")|| line.startsWith("Assistant");
+    }
+    private static boolean cableName (String line){
+        return line.startsWith("Start");
+    }
+    private static boolean cableLength(String line){
+        return line.endsWith("ft");
     }
 }
