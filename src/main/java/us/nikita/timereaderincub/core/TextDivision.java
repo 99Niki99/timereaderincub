@@ -1,7 +1,6 @@
 package us.nikita.timereaderincub.core;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TextDivision {
@@ -26,10 +25,10 @@ public class TextDivision {
                 cableName.add(words[1]);
             }
                 if (cableLength(line)) {
-                try {
+                try {                                               //If the program read numbers as letters.
                     cableLength.add(Integer.valueOf(words[1]));
                 } catch (Exception e) {
-                    System.out.println("not number" + e.getMessage());
+                    System.out.println("not a numbers" + e.getMessage());
                 }
             }
         }
