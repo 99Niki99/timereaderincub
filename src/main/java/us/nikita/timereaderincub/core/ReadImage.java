@@ -7,7 +7,7 @@ import java.io.File;
 
 public class ReadImage {
     String text;
-    public String readImage()
+    public String readTextImage()
     {
         Tesseract tesseract = new Tesseract();
         try {

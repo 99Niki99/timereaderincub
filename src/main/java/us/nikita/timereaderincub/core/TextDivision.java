@@ -5,17 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TextDivision {
-    private static final List<String> EMPLOYEE_PREFIX = List.of("Operator", "Assistant");
    static ReadImage readImage = new ReadImage();
-   static String textForDivision = readImage.readImage();
-
+   static String textForDivision = readImage.readTextImage();
    static List<String> teamWorkers = new ArrayList<>();
-   static List<String> cable = new ArrayList<>();
-    static List<Integer> cableLength = new ArrayList<>();
-    static int totalLegth;
+   static List<String> cableName = new ArrayList<>();
+   static List<Integer> cableLength = new ArrayList<>();
+   static int totalLegth;
 
 
-    public static void main(String[] args){
+    private void divisionOnList(){
         String[] splitText = textForDivision.split("\\n+");
 
         for (String s : splitText) {
@@ -23,10 +21,10 @@ public class TextDivision {
             String[] words = line.split("\\s+");
             if (hasEmployee(line)) {
                 teamWorkers.add(line);
-            } else
+            }
                 if (cableName(line)) {
-                cable.add(words[1]);
-            } else
+                cableName.add(words[1]);
+            }
                 if (cableLength(line)) {
                 try {
                     cableLength.add(Integer.valueOf(words[1]));
@@ -39,13 +37,18 @@ public class TextDivision {
     }
 
     private static boolean hasEmployee(String line){
+        String keyWords = line;
 
-       return line.startsWith("Operator")|| line.startsWith("Assistant");
+       return keyWords.startsWith("Operator")|| line.startsWith("Assistant");
     }
     private static boolean cableName (String line){
-        return line.startsWith("Start");
+        String keyWords = line;
+
+        return keyWords.startsWith("Start");
     }
     private static boolean cableLength(String line){
-        return line.endsWith("ft");
+        String keyWords = line;
+
+        return keyWords.endsWith("ft");
     }
 }
