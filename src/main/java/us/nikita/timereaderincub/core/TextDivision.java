@@ -13,7 +13,7 @@ public class TextDivision {
     static int totalLegth;
 
 
-    public static void main(String[] args) {
+    private void setTextForDivision() {
         Arrays.stream(textForDivision.split("\\n+"))
                 .map(String::trim)
                 .forEach(line -> {
@@ -22,7 +22,7 @@ public class TextDivision {
                             .toArray(String[]::new);
                     addTeamWorkerIfExist(line);
                     cableNameIfExist(line, words);
-                    cableLengthIfExist(line,words);
+                    cableLengthIfExist(line, words);
                 });
 
         totalLegth = cableLength.stream().reduce(0, Integer::sum);
@@ -36,15 +36,16 @@ public class TextDivision {
     }
 
     private static void cableNameIfExist(String line, String[] words) {
-        boolean cableNameDataExist = line.startsWith("Start");;
-        if(cableNameDataExist){
+        boolean cableNameDataExist = line.startsWith("Start");
+        ;
+        if (cableNameDataExist) {
             cableName.add(words[1]);
         }
     }
 
     private static void cableLengthIfExist(String line, String[] words) {
         boolean cableLengthDataExist = line.endsWith("ft");
-        if(cableLengthDataExist){
+        if (cableLengthDataExist) {
             cableLength.add(Integer.valueOf(words[1]));
         }
     }
