@@ -1,8 +1,4 @@
 package us.nikita.timereaderincub.core;
-
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.TesseractException;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,25 +7,36 @@ import java.io.File;
 import java.io.IOException;
 
 public class ImproveTextQuality {
-    protected static void processImg(BufferedImage ipimage, float scaleFactor, float offset)
-            throws IOException, TesseractException {
-        BufferedImage opimage = new BufferedImage(
+    static Graphics2D graphicForNewImage;
+    static BufferedImage makeNewImage;
+    static BufferedImage perfomingScaling;
+    protected static void processImg(BufferedImage bufferImages, float scaleFactor, float offset)
+            throws IOException {
+
+        makeNewImage(bufferImages);
+        makeGrayScaling(bufferImages, scaleFactor, offset);
+        saveNewImage();
+    }
+
+    private static void makeNewImage(BufferedImage bufferImages){
+         makeNewImage = new BufferedImage(
                 1050,
                 1024,
-                ipimage.getType());
-        Graphics2D graphic = opimage.createGraphics();
-        graphic.drawImage(ipimage,
+                bufferImages.getType());
+         graphicForNewImage = makeNewImage.createGraphics();
+    }
+    private static void makeGrayScaling(BufferedImage bufferImages, float scaleFactor, float offset){
+        graphicForNewImage.drawImage(bufferImages,
                 0, 0, 1050, 1024,
-                null);
-        graphic.dispose();
-        RescaleOp rescale = new RescaleOp(scaleFactor, offset, null);
-        BufferedImage fopimage = rescale.filter(opimage, null);
-        ImageIO.write(fopimage, "jpg",
+                null);      // drawing new image starting from 0 0. Of size 1050 x 1024 (zoomed images) null is the ImageObserver class object
+        graphicForNewImage.dispose();
+        RescaleOp makeGrayScaling = new RescaleOp(scaleFactor, offset, null);
+        perfomingScaling = makeGrayScaling.filter(makeNewImage, null);
+    }
+
+    private static void saveNewImage() throws IOException {
+        ImageIO.write(perfomingScaling, "jpg",
                 new File("D:\\NewImage\\output2.png"));
-        Tesseract it = new Tesseract();
-        it.setDatapath("D:\\Tess4J");
-        String str = it.doOCR(fopimage);
-        System.out.println(str);
     }
 
 
