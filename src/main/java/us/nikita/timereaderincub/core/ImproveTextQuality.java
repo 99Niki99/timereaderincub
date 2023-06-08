@@ -9,8 +9,8 @@ import java.io.IOException;
 public class ImproveTextQuality {
     static Graphics2D graphicForNewImage;
     static BufferedImage makeNewImage;
-    static BufferedImage perfomingScaling;
-    protected static void processImg(BufferedImage bufferImages, float scaleFactor, float offset)
+    static BufferedImage performingScaling;
+    protected static void changingAndSaveNewImage(BufferedImage bufferImages, float scaleFactor, float offset)
             throws IOException {
 
         makeNewImage(bufferImages);
@@ -31,11 +31,11 @@ public class ImproveTextQuality {
                 null);      // drawing new image starting from 0 0. Of size 1050 x 1024 (zoomed images) null is the ImageObserver class object
         graphicForNewImage.dispose();
         RescaleOp makeGrayScaling = new RescaleOp(scaleFactor, offset, null);
-        perfomingScaling = makeGrayScaling.filter(makeNewImage, null);
+        performingScaling = makeGrayScaling.filter(makeNewImage, null);
     }
 
     private static void saveNewImage() throws IOException {
-        ImageIO.write(perfomingScaling, "jpg",
+        ImageIO.write(performingScaling, "jpg",
                 new File("D:\\NewImage\\output2.png"));
     }
 
