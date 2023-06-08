@@ -1,7 +1,4 @@
 package us.nikita.timereaderincub.core;
-
-import net.sourceforge.tess4j.TesseractException;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,7 +6,7 @@ import java.io.IOException;
 
 import static us.nikita.timereaderincub.core.ImproveTextQuality.processImg;
 
-public class AddingContrastToAnImage {
+public class ScalingImage {
     static BufferedImage takeImageForChange;
 
     public static void main(String[] args) throws Exception {
@@ -19,10 +16,10 @@ public class AddingContrastToAnImage {
         double readSizeImage = takeImageForChange
                 .getRGB(takeImageForChange.getTileWidth() / 2,
                         takeImageForChange.getTileHeight() / 2);
-        makeNewSize(readSizeImage);
+        makeNewScaling(readSizeImage);
     }
 
-    private static void makeNewSize(double makeSizeImage) throws IOException {
+    private static void makeNewScaling(double makeSizeImage) throws IOException {
         if (makeSizeImage >= -1.4211511E7 && makeSizeImage < -7254228) {
             processImg(takeImageForChange, 3f, -10f);
         } else if (makeSizeImage >= -7254228 && makeSizeImage < -2171170) {
