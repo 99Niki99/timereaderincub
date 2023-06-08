@@ -1,4 +1,5 @@
 package us.nikita.timereaderincub.core;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,6 +11,7 @@ public class ImproveTextQuality {
     static Graphics2D graphicForNewImage;
     static BufferedImage makeNewImage;
     static BufferedImage performingScaling;
+
     protected static void changingAndSaveNewImage(BufferedImage bufferImages, float scaleFactor, float offset)
             throws IOException {
 
@@ -18,14 +20,15 @@ public class ImproveTextQuality {
         saveNewImage();
     }
 
-    private static void makeNewImage(BufferedImage bufferImages){
-         makeNewImage = new BufferedImage(
+    private static void makeNewImage(BufferedImage bufferImages) {
+        makeNewImage = new BufferedImage(
                 1050,
                 1024,
                 bufferImages.getType());
-         graphicForNewImage = makeNewImage.createGraphics();
+        graphicForNewImage = makeNewImage.createGraphics();
     }
-    private static void makeGrayScaling(BufferedImage bufferImages, float scaleFactor, float offset){
+
+    private static void makeGrayScaling(BufferedImage bufferImages, float scaleFactor, float offset) {
         graphicForNewImage.drawImage(bufferImages,
                 0, 0, 1050, 1024,
                 null);      // drawing new image starting from 0 0. Of size 1050 x 1024 (zoomed images) null is the ImageObserver class object

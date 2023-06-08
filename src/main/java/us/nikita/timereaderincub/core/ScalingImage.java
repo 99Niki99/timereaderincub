@@ -1,4 +1,5 @@
 package us.nikita.timereaderincub.core;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -8,15 +9,20 @@ import static us.nikita.timereaderincub.core.ImproveTextQuality.changingAndSaveN
 
 public class ScalingImage {
     static BufferedImage takeImageForChange;
+    static double readSizeImage;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
+        getScalingImage();
+        makeNewScaling(readSizeImage);
+    }
+
+    private static void getScalingImage() throws IOException {
         File addressImageForChange = new File(
                 "D:\\PhotoForTest\\photoTest1.jpg");
         takeImageForChange = ImageIO.read(addressImageForChange);
-        double readSizeImage = takeImageForChange
+        readSizeImage = takeImageForChange
                 .getRGB(takeImageForChange.getTileWidth() / 2,
                         takeImageForChange.getTileHeight() / 2);
-        makeNewScaling(readSizeImage);
     }
 
     private static void makeNewScaling(double makeSizeImage) throws IOException {

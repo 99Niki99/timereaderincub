@@ -37,7 +37,7 @@ public class TextDivision {
 
     private static void cableNameIfExist(String line, String[] words) {
         boolean cableNameDataExist = line.startsWith("Start");
-                if (cableNameDataExist) {
+        if (cableNameDataExist) {
             cableName.add(words[1]);
         }
     }
