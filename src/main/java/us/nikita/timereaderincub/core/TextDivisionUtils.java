@@ -7,19 +7,30 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Здесь должен быть JavaDoc */
+/**
+ * The class divides the received text from the image into several Arrays
+ * @author Nikita
+ */
 public final class TextDivisionUtils {
 
     private TextDivisionUtils() throws IllegalAccessException {
         throw new IllegalAccessException();
     }
 
+    /**
+     *The method adds up all the cables produced during the day.
+     * @return
+     */
     public static int calculateCableLength(String[] lines) {
         return Arrays.stream(lines)
                 .mapToInt(TextDivisionUtils::cableLengthIfExist)
                 .sum();
     }
 
+    /**
+     * The method adds the names of the workers to the Array <String> buildTeam
+     * @return
+     */
     public static List<String> buildTeam(String[] lines) {
         return Arrays.stream(lines)
                 .map(TextDivisionUtils::addTeamWorkerIfExist)
