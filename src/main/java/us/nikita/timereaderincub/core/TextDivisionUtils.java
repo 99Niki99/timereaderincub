@@ -3,6 +3,7 @@ package us.nikita.timereaderincub.core;
 import jakarta.annotation.Nullable;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -19,34 +20,42 @@ public final class TextDivisionUtils {
 
     /**
      *The method adds up all the cables produced during the day.
-     * @return
+     * @return int all cables
      */
     public static int calculateCableLength(String[] lines) {
         return Arrays.stream(lines)
-                .mapToInt(TextDivisionUtils::cableLengthIfExist)
+                .mapToInt(TextDivisionUtils::checkAndFoundLengthCable)
                 .sum();
     }
 
     /**
-     * The method adds the names of the workers to the Array <String> buildTeam
-     * @return
+     * The method stores the names of the workers to the Array <String> buildTea
+     * @return List<String> name team workers
      */
     public static List<String> buildTeam(String[] lines) {
         return Arrays.stream(lines)
-                .map(TextDivisionUtils::addTeamWorkerIfExist)
+                .map(TextDivisionUtils::checkNameWorkerShift)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
-    public static List<String> getCableName(String[] lines) {
+    /**
+     * The method stores cable names in an Array List<String>
+     * @return List<String> cable name
+     */
+    public static List<String> addsCableNameToTheLIst(String[] lines) {
         return Arrays.stream(lines)
-                .map(TextDivisionUtils::cableNameIfExist)
+                .map(TextDivisionUtils::checkCableName)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
+    }
+    public static HashMap<String, Integer> addCableLength(String[] lines){
+        return Arrays.stream(lines)
+                .map(TextDivisionUtils::checkLineForAddInMap);
     }
 
     @Nullable
-    private static String addTeamWorkerIfExist(String line) {
+    private static String checkNameWorkerShift(String line) {
         boolean employeeDataExist = line.startsWith("Operator") || line.startsWith("Assistant");
         if (employeeDataExist) {
             return line;
@@ -55,10 +64,10 @@ public final class TextDivisionUtils {
     }
 
     @Nullable
-    private static String cableNameIfExist(String line) {
+    private static String checkCableName(String line) {
         boolean cableNameDataExist = line.startsWith("Start");
         if (cableNameDataExist) {
-            String[] words = splitToWords(line);
+            String[] words = splitToWordsFromImage(line);
             if (words.length == 2) {
                 return words[1];
             }
@@ -66,18 +75,32 @@ public final class TextDivisionUtils {
         return null;
     }
 
-    private static int cableLengthIfExist(String line) {
+    private static int checkAndFoundLengthCable(String line) {
         boolean cableLengthDataExist = line.endsWith("ft");
         if (cableLengthDataExist) {
-            String[] words = splitToWords(line);
+            String[] words = splitToWordsFromImage(line);
             if (words.length == 3) {
                 return Integer.parseInt(words[1]);
             }
         }
         return 0;
     }
+    private static void checkLineForAddInMap(String line){
+       boolean cableStartAndEndKeyWord = line.startsWith("A") && line.endsWith("ft");
+       if (cableStartAndEndKeyWord){
+           String[] words = splitToWordsFromImage(line);
+        makeKey(words);
+        makeObject(words);
+       }
+    }
+    private static String makeKey(String[] words){
+        return words[0];
+    }
+    private static String makeObject(String[] words){
+        return words[1];
+    }
 
-    private static String[] splitToWords(String line) {
+    private static String[] splitToWordsFromImage(String line) {
         return Arrays.stream(line.split("\\s+"))
                 .map(String::trim)
                 .toArray(String[]::new);
