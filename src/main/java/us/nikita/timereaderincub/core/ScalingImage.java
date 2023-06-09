@@ -13,7 +13,6 @@ public class ScalingImage {
 
     /**
      * The method changes the image size
-     * @throws IOException
      */
 
     public static void main(String[] args) throws IOException {

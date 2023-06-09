@@ -14,10 +14,6 @@ public class ImproveTextQuality {
 
     /**
      * the method creates a new image, changes its color correction and saves it to the New Image folder
-     * @param bufferImages
-     * @param scaleFactor
-     * @param offset
-     * @throws IOException
      */
     public static void changingAndSaveNewImage(BufferedImage bufferImages, float scaleFactor, float offset)
             throws IOException {
