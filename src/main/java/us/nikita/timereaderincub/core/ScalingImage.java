@@ -11,6 +11,11 @@ public class ScalingImage {
     static BufferedImage takeImageForChange;
     static double readSizeImage;
 
+    /**
+     * The method changes the image size
+     * @throws IOException
+     */
+
     public static void main(String[] args) throws IOException {
         getScalingImage();
         makeNewScaling(readSizeImage);
