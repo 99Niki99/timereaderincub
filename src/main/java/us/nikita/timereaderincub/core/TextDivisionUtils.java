@@ -2,12 +2,14 @@ package us.nikita.timereaderincub.core;
 
 import jakarta.annotation.Nullable;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
- * The class divides the received text from the image into several Arrays
+ * The class divides the received text into several Arrays
  *
  * @author Nikita
  */
@@ -18,18 +20,8 @@ public final class TextDivisionUtils {
     }
 
     /**
-     * The method adds up all the cables produced during the day.
-     * @param lines the text we got from the image
-     * @return int all cables
-     */
-    public static int calculateCableLength(String[] lines) {
-        return Arrays.stream(lines)
-                .mapToInt(TextDivisionUtils::checkAndFoundLengthCable)
-                .sum();
-    }
-
-    /**
      * The method stores the names of the workers to the Array <String> buildTea
+     *
      * @param lines the text we got from the image
      * @return List<String> name team workers
      */
@@ -41,29 +33,16 @@ public final class TextDivisionUtils {
     }
 
     /**
-     * The method stores cable names in an Array List<String>
-     * @param lines the text we got from the image
-     * @return List<String> cable name
-     */
-    public static List<String> addsCableNameToTheLIst(String[] lines) {
-        return Arrays.stream(lines)
-                .map(TextDivisionUtils::checkCableName)
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * Adds a key and value to the Map<String, Integer>
+     * Extracts cable data from provided lines
+     *
      * @param lines the text we got from the image
      * @return Map<String, Integer> cable Name and Length
      */
-    public static Map<String, Integer> addCableLength(String[] lines) {
-        return Stream
-                .of(new Object[][]{{makeKey(Arrays.toString(lines)),
-                        makeObject(Arrays.toString(lines))}})
-                .filter(e -> e[0] != null && e[1] != null)
-                .collect(Collectors.toMap(e -> (String) e[0],
-                        e -> (Integer) e[1]));
+    public static Map<String, Integer> extractCableData(String[] lines) {
+        return Arrays.stream(lines)
+                .map(TextDivisionUtils::checkLineContainsCableData)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toMap(e -> e[0], e -> Integer.valueOf(e[1])));
     }
 
     @Nullable
@@ -99,31 +78,15 @@ public final class TextDivisionUtils {
     }
 
     @Nullable
-    private static String[] checkLineForAddInMap(String line) {
+    private static String[] checkLineContainsCableData(String line) {
         boolean cableStartAndEndKeyWord = line.startsWith("A") && line.endsWith("ft");
         if (cableStartAndEndKeyWord) {
             String[] words = splitToWordsFromImage(line);
-            if (words.length >= 3) {
-                return splitToWordsFromImage(line);
+            if (words.length == 3) {
+                return words;
             }
         }
         return null;
-    }
-
-    @Nullable
-    private static String makeKey(String line) {
-        if (checkNull(line)) {
-            return null;
-        }
-        return checkLineForAddInMap(line)[0];
-    }
-
-    @Nullable
-    private static String makeObject(String line) {
-        if (checkNull(line)) {
-            return null;
-        }
-        return checkLineForAddInMap(line)[1];
     }
 
     private static String[] splitToWordsFromImage(String line) {
@@ -132,9 +95,4 @@ public final class TextDivisionUtils {
                 .toArray(String[]::new);
 
     }
-
-    private static boolean checkNull(String line) {
-        return line == null;
-    }
-
 }
