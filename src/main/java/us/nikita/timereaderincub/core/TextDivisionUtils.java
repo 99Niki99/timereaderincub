@@ -2,10 +2,7 @@ package us.nikita.timereaderincub.core;
 
 import jakarta.annotation.Nullable;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -26,10 +23,13 @@ public final class TextDivisionUtils {
      * @return List<String> name team workers
      */
     public static List<String> buildTeam(String[] lines) {
-        return Arrays.stream(lines)
-                .map(TextDivisionUtils::checkNameWorkerShift)
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+        if (Objects.nonNull(lines)) {
+            return Arrays.stream(lines)
+                    .map(TextDivisionUtils::checkNameWorkerShift)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
 
     /**
