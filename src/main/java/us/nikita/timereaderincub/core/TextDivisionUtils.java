@@ -19,7 +19,7 @@ public final class TextDivisionUtils {
 
     /**
      * The method adds up all the cables produced during the day.
-     *
+     * @param lines the text we got from the image
      * @return int all cables
      */
     public static int calculateCableLength(String[] lines) {
@@ -30,7 +30,7 @@ public final class TextDivisionUtils {
 
     /**
      * The method stores the names of the workers to the Array <String> buildTea
-     *
+     * @param lines the text we got from the image
      * @return List<String> name team workers
      */
     public static List<String> buildTeam(String[] lines) {
@@ -42,7 +42,7 @@ public final class TextDivisionUtils {
 
     /**
      * The method stores cable names in an Array List<String>
-     *
+     * @param lines the text we got from the image
      * @return List<String> cable name
      */
     public static List<String> addsCableNameToTheLIst(String[] lines) {
@@ -54,7 +54,7 @@ public final class TextDivisionUtils {
 
     /**
      * Adds a key and value to the Map<String, Integer>
-     *
+     * @param lines the text we got from the image
      * @return Map<String, Integer> cable Name and Length
      */
     public static Map<String, Integer> addCableLength(String[] lines) {
