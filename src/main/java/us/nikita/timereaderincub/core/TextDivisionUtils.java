@@ -39,10 +39,13 @@ public final class TextDivisionUtils {
      * @return Map<String, Integer> cable Name and Length
      */
     public static Map<String, Integer> extractCableData(String[] lines) {
-        return Arrays.stream(lines)
-                .map(TextDivisionUtils::checkLineContainsCableData)
-                .filter(Objects::nonNull)
-                .collect(Collectors.toMap(e -> e[0], e -> Integer.valueOf(e[1])));
+        if (Objects.nonNull(lines)) {
+            return Arrays.stream(lines)
+                    .map(TextDivisionUtils::checkLineContainsCableData)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toMap(e -> e[0], e -> Integer.valueOf(e[1])));
+        }
+        return Collections.emptyMap();
     }
 
     @Nullable
