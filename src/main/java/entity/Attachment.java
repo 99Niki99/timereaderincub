@@ -18,18 +18,18 @@ public class Attachment {
     @GenericGenerator(name = "uuid", strategy ="uuid2")
 
     private String id;
+    private String team;
     private String cableName;
-    private int cableLength;
-    private int tottalLengthForDay;
+    private Integer cableLength;
 
     @Lob
 
     private byte[] data;
 
-    public Attachment(String cableName, int cableLength, int tottalLengthForDay, byte[] data){
-        this.cableName =cableName;
+    public Attachment(String team, byte[] data, String cableName, Integer cableLength){
         this.cableLength = cableLength;
-        this.tottalLengthForDay = tottalLengthForDay;
+        this.cableName = cableName;
+        this.team = team;
         this.data = data;
     }
 }
