@@ -28,7 +28,7 @@ public final class TextDivisionUtilsTest {
         assertThat(teams).isEmpty();
     }
     @Test
-    public void buildTeam_goodLines_returnFullList(){
+    public void buildTeam_goodLinesOperators_returnFullList(){
         String[] lines = new String[]{"Operator Nikita Oscar"};
         List<String> teams = TextDivisionUtils.buildTeam(lines);
         List<String> check = new ArrayList<>();
@@ -37,11 +37,13 @@ public final class TextDivisionUtilsTest {
     }
 
     @Test
-    public void buildTeam_goodLinesAssistent_returnFullList(){
-        String[] lines = new String[]{"Operator Nikita Oscar"};
+    public void buildTeam_goodLinesAssistant_returnFullList(){
+        String[] lines = new String[]{"Assistant Ivan"};
         List<String> teams = TextDivisionUtils.buildTeam(lines);
         List<String> check = new ArrayList<>();
-        check.add("Operator Nikita Oscar");
+        check.add("Assistant Ivan");
         assertThat(teams).isEqualTo(check);
     }
+
+
 }
