@@ -7,6 +7,12 @@ import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * that class takes an image, changes its color correction and saves it in another folder
+ *
+ * @author Nikita
+ */
+
 public class ImproveTextQuality {
     static Graphics2D graphicForNewImage;
     static BufferedImage makeNewImage;
@@ -24,7 +30,7 @@ public class ImproveTextQuality {
     }
 
     private static void makeNewImage(BufferedImage bufferImages) {
-        makeNewImage = new BufferedImage(
+         makeNewImage = new BufferedImage(
                 1050,
                 1024,
                 bufferImages.getType());
