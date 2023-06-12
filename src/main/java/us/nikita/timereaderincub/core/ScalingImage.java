@@ -7,6 +7,11 @@ import java.io.IOException;
 
 import static us.nikita.timereaderincub.core.ImproveTextQuality.changingAndSaveNewImage;
 
+/**
+ * take Image and change size
+ *
+ * @author Nikita
+ */
 public class ScalingImage {
     static BufferedImage takeImageForChange;
     static double readSizeImage;
