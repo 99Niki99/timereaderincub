@@ -24,7 +24,7 @@ public class ImproveTextQuality {
      * @param bufferImages empty image buffer
      * @param scaleFactor  defined as the ratio between the scale of a given original object and a new object
      * @param offset       It determines how high the brightness (magnification brightness) of the image is after scaling.
-     * @throws IOException usually occurs when there is a problem with reading or writing data.
+     * @throws IOException usually occurs when there is a problem with reading or writing image.
      */
     public static void
     processImg(BufferedImage bufferImages, float scaleFactor, float offset) throws IOException {

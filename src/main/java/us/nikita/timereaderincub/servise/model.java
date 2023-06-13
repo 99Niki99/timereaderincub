@@ -1,4 +1,4 @@
-package servise;
+package us.nikita.timereaderincub.servise;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

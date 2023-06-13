@@ -1,4 +1,4 @@
-package servise;
+package us.nikita.timereaderincub.servise;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

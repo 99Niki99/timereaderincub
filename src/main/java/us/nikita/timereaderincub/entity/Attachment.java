@@ -1,4 +1,4 @@
-package entity;
+package us.nikita.timereaderincub.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
