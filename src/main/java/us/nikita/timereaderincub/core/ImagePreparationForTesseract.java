@@ -13,11 +13,12 @@ import java.io.IOException;
  * @author Nikita
  */
 
-public class ImproveTextQuality {
+public class ImagePreparationForTesseract {
 
     private static final int WIDTH = 1050;
     private static final int HEIGHT = 1024;
-
+    private static final String PATH_FROM = "D:\\PhotoForTest\\photoTest1.jpg";
+    private static final String PATH_TO = "D:\\NewImage\\output3.png";
     /**
      * This method crops and saves the image in the specified folder.
      *
@@ -39,7 +40,7 @@ public class ImproveTextQuality {
         RescaleOp makeGrayScaling = new RescaleOp(scaleFactor, offset, null);
 
         BufferedImage performingScaling = makeGrayScaling.filter(makeNewImage, null);
-        ImageIO.write(performingScaling, "jpg", new File("D:\\NewImage\\output3.png"));
+        ImageIO.write(performingScaling, "jpg", new File(PATH_TO));
     }
 
     /**
@@ -49,7 +50,7 @@ public class ImproveTextQuality {
      */
     public static void axisOfChangeSpecifier() throws IOException {
         File addressImageForChange = new File(
-                "D:\\PhotoForTest\\photoTest1.jpg");
+                PATH_FROM);
 
         BufferedImage takeImageForChange = ImageIO.read(addressImageForChange);
 
