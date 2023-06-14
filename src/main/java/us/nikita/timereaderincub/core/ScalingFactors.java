@@ -3,6 +3,11 @@ package us.nikita.timereaderincub.core;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
+/**
+ * The class creates an Enum which is the value of the Scaling factors, it also creates a class that defines the axis of the image. And getters
+ *
+ * @author Nikita
+ */
 public enum ScalingFactors {
 
     TYPE_ONE(-1.4211511E7, -7254228, 3f, -10f),
@@ -24,7 +29,12 @@ public enum ScalingFactors {
         this.offset = offset;
     }
 
-
+    /**
+     * The method determines the axis of image change
+     *
+     * @param image Image for rescaling
+     * @return Returns the scaling factor for changing the image
+     */
     public static ScalingFactors getForImage(BufferedImage image) {
         double imageSize
                 = image
@@ -45,4 +55,7 @@ public enum ScalingFactors {
     public float getOffset() {
         return offset;
     }
+
+
 }
+
