@@ -1,0 +1,21 @@
+package us.nikita.timereaderincub.core;
+
+import java.nio.file.Path;
+
+/**
+ * The class stores the path to get and the destination folder for the image and get methods
+ *
+ * @author Nikita
+ */
+public class PathFromAndTo {
+    private static final Path PATH_FROM = Path.of("D:\\PhotoForTest\\photoTest1.jpg");
+    private static final Path PATH_TO = Path.of("D:\\NewImage\\output6.png");
+
+    public static Path getPathFrom() {
+        return PATH_FROM;
+    }
+
+    public static Path getPathTo() {
+        return PATH_TO;
+    }
+}
