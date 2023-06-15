@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public final class ImagePreparationForTesseractTest {
 
@@ -25,5 +25,28 @@ public final class ImagePreparationForTesseractTest {
         assertTrue(outputFile.exists());
         assertTrue(outputFile.isFile());
 
+    }
+
+    @Test
+    void processImage_NullFromParameter_ThrowsException() {
+        Path inputImagePath = null;
+        Path outputImagePath = tempDir.resolve("output.jpg");
+
+        assertThrows(NullPointerException.class, () -> ImagePreparationForTesseract.processImage(inputImagePath, outputImagePath));
+
+        File outputFile = outputImagePath.toFile();
+        assertFalse(outputFile.exists());
+    }
+
+    @Test
+    void processImage_InvalidInputImage_ThrowsException() throws IOException {
+
+        Path inputImagePath = tempDir.resolve("invalid.jpg"); 
+        Path outputImagePath = tempDir.resolve("output.jpg");
+
+        assertThrows(IOException.class, () -> ImagePreparationForTesseract.processImage(inputImagePath, outputImagePath));
+        
+        File outputFile = outputImagePath.toFile();
+        assertFalse(outputFile.exists());
     }
 }
