@@ -1,0 +1,29 @@
+package us.nikita.timereaderincub.core;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public final class ImagePreparationForTesseractTest {
+
+    @TempDir
+    static Path tempDir;
+
+    @Test
+    public void processImage_FromAndTo() throws IOException {
+        Path inputImagePath = Path.of("D:\\PhotoForTest\\photoTest1.jpg");
+        Path outputImagePath = tempDir.resolve("D:\\NewImage\\output6.png");
+
+        ImagePreparationForTesseract.processImage(inputImagePath, outputImagePath);
+
+        File outputFile = outputImagePath.toFile();
+        assertTrue(outputFile.exists());
+        assertTrue(outputFile.isFile());
+
+    }
+}
