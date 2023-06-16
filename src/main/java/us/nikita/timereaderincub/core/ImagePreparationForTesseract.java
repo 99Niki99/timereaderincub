@@ -42,10 +42,10 @@ public class ImagePreparationForTesseract {
     /**
      * This method crops and saves the image in the specified folder.
      *
-     * @param bufferImages Empty image buffer
-     * @param scaleFactor  Defined as the ratio between the scale of a given original object and a new object
+     * @param bufferImages Empty image buffer.
+     * @param scaleFactor  Defined as the ratio between the scale of a given original object and a new object.
      * @param offset       It determines how high the brightness (magnification brightness) of the image is after scaling.
-     * @param to           Returns the address where we put the image
+     * @param to           Returns the address where we put the image.
      * @throws IOException Usually occurs when there is a problem with reading or writing image.
      */
     private static void
