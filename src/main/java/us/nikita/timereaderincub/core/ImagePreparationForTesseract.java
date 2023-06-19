@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 /**
- * This class takes an image, resizes and colors it, and saves the new image in a separate folder.
+ * This class takes an image, resizes and colors it, and saves the new image in a separate folder
  *
  * @author Nikita
  */
