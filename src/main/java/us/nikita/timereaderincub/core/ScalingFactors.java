@@ -6,7 +6,7 @@ import java.util.Arrays;
 /**
  * The class creates an Enum which is the value of the Scaling factors, it also creates a class that defines the axis of the image. And getters
  *
- * @author Nikita
+ * @author Nikita.
  */
 public enum ScalingFactors {
 
