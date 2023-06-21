@@ -5,9 +5,20 @@ import net.sourceforge.tess4j.TesseractException;
 
 import java.io.File;
 
+/**
+ * class uses tesseract to define text from image.
+ *
+ * @author Nikita
+ */
+
 public class ReadImage {
     String text;
 
+    /**
+     * defines image text
+     *
+     * @return text from image
+     */
     public String readTextImage() {
         Tesseract tesseract = new Tesseract();
         try {
