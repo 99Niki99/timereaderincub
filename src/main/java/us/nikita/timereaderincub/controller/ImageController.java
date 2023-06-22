@@ -41,15 +41,19 @@ public class ImageController {
      * @throws IOException if not image
      */
     @GetMapping("/download/{fileId}")
-    public ResponseEntity<Resource> downloadImage(@PathVariable String imageName) throws IOException {
+    public ResponseEntity<ByteArrayResource> downloadImage(@PathVariable String imageName) throws IOException {
         File imageFile = new File(PathFromAndTo.getPathFrom() + imageName);
         if (!imageFile.exists()) {
             return ResponseEntity.notFound()
                     .build();
         }
-        Resource imageResource = (Resource) new UrlResource(imageFile.toURI());
+        BufferedImage image = ImageIO.read(imageFile);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(image, "jpeg", byteArrayOutputStream);
+        ByteArrayResource imageResource = new ByteArrayResource(byteArrayOutputStream.toByteArray());
 
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG)
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
                 .body(imageResource);
     }
 
