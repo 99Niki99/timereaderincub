@@ -15,15 +15,33 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * controller download and uploud image
+ *
+ * @author Nikita
+ */
 @Controller
 public class ImageController {
+    /**
+     * Upload Image
+     *
+     * @param image Image to upload
+     * @return image
+     */
     @PostMapping("/upload")
-    public ResponseEntity<String> uploudPhoto(@RequestParam("file") BufferedImage image) {
+    public ResponseEntity<String> uploadImage(@RequestParam("file") BufferedImage image) {
         return ResponseEntity.ok("image downloaded");
     }
 
+    /**
+     * Download Image
+     *
+     * @param imageName Image to downloud
+     * @return Image
+     * @throws IOException if not image
+     */
     @GetMapping("/download/{fileId}")
-    public ResponseEntity<Resource> downloudImage(@PathVariable String imageName) throws IOException {
+    public ResponseEntity<Resource> downloadImage(@PathVariable String imageName) throws IOException {
         File imageFile = new File(PathFromAndTo.getPathFrom() + imageName);
         if (!imageFile.exists()) {
             return ResponseEntity.notFound()
