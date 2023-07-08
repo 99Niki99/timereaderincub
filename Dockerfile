@@ -2,9 +2,6 @@ FROM rsunix/yourkit-openjdk17
 
 WORKDIR /usr/src/myapp
 
-COPY . .
+COPY build/libs/timereaderincub-0.0.1-SNAPSHOT.jar /usr/src/myapp
 
-RUN javac TimereaderincubApplication.java
-
-
-CMD ["java", "TimereaderincubApplication"]
+CMD ["java","-jar", "/usr/src/myapp/timereaderincub-0.0.1-SNAPSHOT.jar"]
