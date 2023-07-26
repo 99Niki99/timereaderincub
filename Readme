@@ -1,0 +1,22 @@
+Description:
+
+This application takes a photograph, enhances its contrast and color for better readability. Then, it utilizes Tesseract OCR and specific algorithms to extract keywords.
+It subsequently uploads the extracted data about employees, cables laid, and their lengths into a database.
+
+Features:
+
+Image Enhancement: The app enhances the input photograph by adjusting its contrast and color to improve text clarity before processing.
+
+Text Extraction: Utilizing Tesseract OCR and advanced algorithms, the app extracts relevant keywords and information from the enhanced image.
+
+Data Storage: The extracted data, including details about employees, cables laid, and their lengths, is stored in a database for further analysis and reference.
+
+How to Use:
+
+Upload Image: Start by uploading a photograph containing the relevant information.
+
+Image Processing: The application will automatically enhance the image's contrast and color for better text extraction.
+
+Keyword Extraction: Tesseract OCR and custom algorithms will be applied to extract keywords and important data from the processed image.
+
+Data Upload: The extracted information about employees and cable details will be uploaded to a designated database for easy access and retrieval.
